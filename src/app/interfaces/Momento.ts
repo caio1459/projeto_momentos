@@ -1,5 +1,5 @@
 export interface Momento {
-  id?: Number;
+  id?: string | number;
   titulo: string;
   descricao: string;
   image: string;
