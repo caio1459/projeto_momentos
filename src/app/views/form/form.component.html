@@ -1,11 +1,17 @@
-<form>
+<form (ngSubmit)="enviar()" [formGroup]="momentoForm" #formDir="ngForm">
     <div class="form-group">
         <label for="titulo">Titulo:</label>
-        <input type="text" placeholder="Digite um Titulo" required id="titulo">
+        <input type="text" placeholder="Digite um Titulo" formControlName="titulo" required id="titulo">
+    </div>
+    <div *ngIf="titulo.invalid && formDir.submitted" class="erro">
+        <p *ngIf="titulo.errors?.['required']">O titulo é obrigatorio</p>
     </div>
     <div class="form-group">
         <label for="descricao">Descrição:</label>
-        <textarea required id="descricao" cols="30" rows="10"></textarea>
+        <textarea required formControlName="descricao" id="descricao" cols="30" rows="10"></textarea>
+    </div>
+    <div *ngIf="descricao.invalid && formDir.submitted" class="erro">
+        <p *ngIf="descricao.errors?.['required']">A descrição é obrigatoria</p>
     </div>
     <div class="form-group">
         <label for="foto">Coloque o seu momento aqui:</label>
