@@ -12,6 +12,9 @@ import { SobreComponent } from './pages/sobre/sobre.component';
 import { NewMomentComponent } from './pages/new-moment/new-moment.component';
 import { FormComponent } from './views/form/form.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +31,8 @@ import { FormComponent } from './views/form/form.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
+    [SweetAlert2Module.forRoot()],
   ],
   providers: [],
   bootstrap: [AppComponent],

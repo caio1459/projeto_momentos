@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+
 
 /**
  * Serviço para manipular operações relacionadas a 'momentos'.
@@ -11,11 +11,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class MomentoService {
-  // Base da URL da API definida no arquivo environments/environment.ts.
-  private ulr = environment.baseApiUlr;
+  // Base da URL da API definida
+  private url: string = 'http://localhost:3333/'; 
 
   // URL completa para o endpoint da API para manipulação de 'momentos'.
-  private apiUlr = `${this.ulr}api/momentos`;
+  private apiUlr = `${this.url}api/momentos`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Momento } from 'src/app/interfaces/momento';
+import { MensagensService } from 'src/app/services/mensagens.service';
 import { MomentoService } from 'src/app/services/momento.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { MomentoService } from 'src/app/services/momento.service';
 export class NewMomentComponent {
   btnText: String = 'Compartilhar';
 
-  constructor(private momentoService: MomentoService) {}
+  constructor(
+    private momentoService: MomentoService,
+    private messageService: MensagensService
+  ) {}
 
   async createHendler(momento: Momento) {
     // Cria um novo objeto FormData para enviar os dados ao servidor como uma solicitação multipart/form-data.
@@ -29,5 +33,7 @@ export class NewMomentComponent {
     // O método criarMomento é a chamada ao servidor que consome o formData para processar o novo momento.
     // O uso de "await" indica que estamos aguardando a conclusão da operação antes de prosseguir.
     await this.momentoService.criarMomento(formData).subscribe();
+
+    this.messageService.mensagemSucesso('Tudo certo','Momento adicionado com sucesso!')
   }
 }
