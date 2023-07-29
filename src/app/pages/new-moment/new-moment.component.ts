@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Momento } from 'src/app/interfaces/momento';
 import { MensagensService } from 'src/app/services/mensagens.service';
 import { MomentoService } from 'src/app/services/momento.service';
@@ -13,7 +14,8 @@ export class NewMomentComponent {
 
   constructor(
     private momentoService: MomentoService,
-    private messageService: MensagensService
+    private messageService: MensagensService,
+    private router: Router
   ) {}
 
   async createHendler(momento: Momento) {
@@ -34,6 +36,11 @@ export class NewMomentComponent {
     // O uso de "await" indica que estamos aguardando a conclusão da operação antes de prosseguir.
     await this.momentoService.criarMomento(formData).subscribe();
 
-    this.messageService.mensagemSucesso('Tudo certo','Momento adicionado com sucesso!')
+    this.messageService.mensagemSucesso(
+      'Tudo certo',
+      'Momento adicionado com sucesso!'
+    );
+    //Faz o redirect utilizando o angular router
+    this.router.navigate(['/']);
   }
 }

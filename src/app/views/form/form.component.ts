@@ -8,7 +8,7 @@ import { MensagensService } from 'src/app/services/mensagens.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.sass'],
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   constructor(public messageService: MensagensService) {}
 
   @Output() onSubmit = new EventEmitter<Momento>();
@@ -56,7 +56,6 @@ export class FormComponent {
       );
       return; // Sai da função se o formulário for inválido.
     } else {
-      console.log(this.momentoForm.value);
       // Emite os dados do formulário através do evento 'onSubmit'.
       // Os dados do formulário são emitidos como um objeto contendo os valores dos campos do formulário.
       this.onSubmit.emit(this.momentoForm.value);

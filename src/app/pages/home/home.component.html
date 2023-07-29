@@ -1,1 +1,20 @@
-<p>home works!</p>
+<div class="home">
+    <h1 *ngIf="momentos.length > 0">Veja o que estão compartilhando</h1>
+    <div *ngIf="momentos.length > 0; else noMomentos">
+        <div class="container">
+            <div *ngFor="let momento of momentos" class="momento">
+                <img src="{{baseApi}}uploads/{{momento.image}}" alt="{{momento.titulo}}">
+                <h3>{{momento.titulo}}</h3>
+                <p class="date">Em: {{momento.created_at}}</p>
+                <p>Comentários: {{momento.comentario!}}</p>
+                <p><a routerLink="momentos/{{momento.id}}">Detalhes</a></p>
+            </div>
+        </div>
+    </div>
+    <ng-template #noMomentos>
+        <div class="erro">
+            <h1>Não há <a routerLink="momentos/new">Momentos</a> cadastrados!</h1>
+            <img src="assets/erro.png" alt="">
+        </div>
+    </ng-template>
+</div>

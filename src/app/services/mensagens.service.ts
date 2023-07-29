@@ -7,14 +7,11 @@ import Swal from 'sweetalert2';
 export class MensagensService {
   constructor() {}
 
-  mensagem: string = '';
-
-  mensagemAlerta(titulo: string, corpo: string) {
-    if (this.mensagem == '') {
-      Swal.fire(titulo, corpo, 'warning');
-    }
+  mensagemAlerta(titulo: string, corpo: string): void {
+    Swal.fire(titulo, corpo, 'warning');
   }
-  mensagemSucesso(titulo: string, corpo: string) {
+
+  mensagemSucesso(titulo: string, corpo: string): void {
     Swal.fire(titulo, corpo, 'success');
   }
 }
