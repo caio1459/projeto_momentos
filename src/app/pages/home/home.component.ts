@@ -10,7 +10,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  
   constructor(
     private momentoService: MomentoService,
     public messageService: MensagensService
@@ -18,9 +17,13 @@ export class HomeComponent implements OnInit {
 
   baseApi = this.momentoService.getApiUlr();
 
-  allMomentos: Momento[] = [];
+  allMomentos: Momento[] = []; //Array de momentos filtrados
 
   momentos: Momento[] = [];
+
+  faSearch = faSearch;
+
+  busca: string = '';
 
   ngOnInit(): void {
     this.momentoService.getAllMomentos().subscribe((items) => {
@@ -34,6 +37,15 @@ export class HomeComponent implements OnInit {
 
       this.allMomentos = data;
       this.momentos = data;
+    });
+  }
+
+  pesquisar(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+
+    this.momentos = this.allMomentos.filter((momento) => {
+      return momento.titulo.toLowerCase().includes(value);
     });
   }
 }

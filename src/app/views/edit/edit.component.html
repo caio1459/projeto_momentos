@@ -1,0 +1,4 @@
+<div class="edit" *ngIf="momento">
+    <h2>Editando o momento: <span>{{momento.titulo.toUpperCase()}}</span>!</h2>
+    <app-form [momentoData]="momento" [btnText]="btnText" (onSubmit)="edit($event)"></app-form>
+</div>

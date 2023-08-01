@@ -1,4 +1,5 @@
 <form (ngSubmit)="enviar()" [formGroup]="momentoForm" #formDir="ngForm">
+    <input type="hidden" formControlName="id">
     <div class="form-group">
         <label for="titulo">Titulo:</label>
         <input type="text" placeholder="Digite um Titulo" formControlName="titulo" required id="titulo">
@@ -17,6 +18,5 @@
         <label for="foto">Coloque o seu momento aqui:</label>
         <input type="file" (change)="selecionarArquivo($event)" required id="foto">
     </div>
-    <input type="submit" value="{{btnText}}" class="enviar"
-        >
+    <input type="submit" value="{{btnText}}" class="enviar">
 </form>

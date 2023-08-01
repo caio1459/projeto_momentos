@@ -1,0 +1,53 @@
+<div class="momento" *ngIf="momento">
+    <h1>{{momento.titulo}}</h1>
+    <img src="{{ulr}}uploads/{{momento.image}}" alt="{{momento.titulo}}">
+    <div class="sobre">
+        <h3>Sobre esse momento:</h3>
+        <p>{{momento.descricao}}</p>
+    </div>
+    <div class="acoes">
+        <h3>Ações:</h3>
+        <a routerLink="/momentos/edit/{{momento.id}}" class="edit-btn">
+            <fa-icon [icon]="editarIcon"></fa-icon>Editar
+        </a>
+        <button class="remove-btn" (click)="excluir(momento.id)">
+            <fa-icon [icon]="excluirIcon"></fa-icon>Excluir
+        </button>
+    </div>
+    <div class="comentarios">
+        <!-- <h3>Comentarios({{momento.comentario!.length > 0 ? momento.comentario!.length : 0}})</h3> -->
+        <h3>Comentários({{momento.comentario?.length || 0}})</h3>
+        <div *ngIf="momento.comentario?.length; else noComentario">
+            <div class="comentario-container" *ngFor="let comentario of momento.comentario">
+                <p class="comentario">{{comentario.texto}}</p>
+                <p class="autor"><strong>Por: </strong>{{comentario.userName}}</p>
+            </div>
+        </div>
+        <ng-template #noComentario>
+            <p>Não há comentarios</p>
+        </ng-template>
+    </div>
+    <div class="comentario-form">
+        <h3>Deixe um comentario:</h3>
+        <form (ngSubmit)="enviar(formDir)" [formGroup]="comentarioForm" #formDir="ngForm">
+            <div class="form-group">
+                <label for="comentario">Comentario:</label>
+                <textarea id="comentario" cols="20" rows="5" placeholder="Digite um comentario" required
+                    formControlName="texto">
+                </textarea>
+            </div>
+            <div *ngIf="texto.invalid && formDir.submitted" class="erro">
+                <p *ngIf="texto.errors?.['required']">O texto é obrigatorio</p>
+            </div>
+            <div class="form-group">
+                <label for="autor">Nome:</label>
+                <input type="text" id="autor" 
+                placeholder="Digite o seu nome" required formControlName="userName">
+            </div>
+            <div *ngIf="userName.invalid && formDir.submitted" class="erro">
+                <p *ngIf="userName.errors?.['required']">O nome é obrigatorio</p>
+            </div>
+            <input type="submit" value="Comentar" class="enviar">
+        </form>
+    </div>
+</div>

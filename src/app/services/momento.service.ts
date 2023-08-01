@@ -12,13 +12,13 @@ import { Respostas } from '../interfaces/resposta';
   providedIn: 'root',
 })
 export class MomentoService {
+  
+  constructor(private http: HttpClient) {}
   // Base da URL da API definida
   private url: string = 'http://localhost:3333/';
 
   // URL completa para o endpoint da API para manipulação de 'momentos'.
   private apiUlr = `${this.url}api/momentos`;
-
-  constructor(private http: HttpClient) {}
 
   getApiUlr() {
     return this.url;
@@ -40,5 +40,22 @@ export class MomentoService {
   //Retorna todos os momentos de acordo com a resposta da aplicação
   getAllMomentos(): Observable<Respostas<Momento[]>> {
     return this.http.get<Respostas<Momento[]>>(this.apiUlr);
+  }
+
+  //Retorna um momento unico
+  getMomento(id: number): Observable<Respostas<Momento>> {
+    const ulr: string = `${this.apiUlr}/${id}`;
+    return this.http.get<Respostas<Momento>>(`${ulr}`);
+  }
+
+  //Deletando um momento
+  removerMomento(id: number) {
+    const ulr: string = `${this.apiUlr}/${id}`;
+    return this.http.delete(ulr);
+  }
+
+  atualizarMomento(id: number | string, formData: FormData): Observable<FormData> {
+    const ulr: string = `${this.apiUlr}/${id}`;
+    return this.http.put<FormData>(`${ulr}`, formData);
   }
 }

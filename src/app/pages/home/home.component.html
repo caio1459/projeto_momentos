@@ -1,5 +1,12 @@
 <div class="home">
     <h1 *ngIf="momentos.length > 0">Veja o que estão compartilhando</h1>
+    <div class="pesquisar">
+        <form>
+            <fa-icon [icon]="faSearch"></fa-icon>
+            <input type="text" placeholder="Pesquisar um momento" (input)="pesquisar($event)">
+
+        </form>
+    </div>
     <div *ngIf="momentos.length > 0; else noMomentos">
         <div class="container">
             <div *ngFor="let momento of momentos" class="momento">

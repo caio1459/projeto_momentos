@@ -14,6 +14,7 @@ export class FormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Momento>();
 
   @Input() btnText!: String;
+  @Input() momentoData: Momento | null = null;
 
   msg: string = '';
 
@@ -21,9 +22,15 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.momentoForm = new FormGroup({
-      id: new FormControl(null),
-      titulo: new FormControl(null, [Validators.required]),
-      descricao: new FormControl(null, [Validators.required]),
+      id: new FormControl(this.momentoData ? this.momentoData.id : null),
+      titulo: new FormControl(
+        this.momentoData ? this.momentoData.titulo : null,
+        [Validators.required]
+      ),
+      descricao: new FormControl(
+        this.momentoData ? this.momentoData.descricao : null,
+        [Validators.required]
+      ),
       image: new FormControl(null),
     });
   }

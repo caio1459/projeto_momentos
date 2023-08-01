@@ -14,6 +14,8 @@ import { FormComponent } from './views/form/form.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { DetalhesComponent } from './pages/detalhes/detalhes.component';
+import { EditComponent } from './views/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SobreComponent,
     NewMomentComponent,
     FormComponent,
+    DetalhesComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

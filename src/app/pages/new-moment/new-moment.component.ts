@@ -34,13 +34,13 @@ export class NewMomentComponent {
     // Chama o serviço MomentoService para criar um novo momento enviando o formData.
     // O método criarMomento é a chamada ao servidor que consome o formData para processar o novo momento.
     // O uso de "await" indica que estamos aguardando a conclusão da operação antes de prosseguir.
-    await this.momentoService.criarMomento(formData).subscribe();
-
-    this.messageService.mensagemSucesso(
-      'Tudo certo',
-      'Momento adicionado com sucesso!'
-    );
-    //Faz o redirect utilizando o angular router
-    this.router.navigate(['/']);
+    await this.momentoService.criarMomento(formData).subscribe(() => {
+      this.messageService.mensagemSucesso(
+        'Tudo certo',
+        'Momento adicionado com sucesso!'
+      );
+      //Faz o redirect utilizando o angular router
+      this.router.navigate(['/']);
+    });
   }
 }
