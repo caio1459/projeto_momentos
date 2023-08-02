@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Respostas } from '../interfaces/resposta';
-import { Momento } from '../interfaces/momento';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +16,6 @@ export class ComentarioService {
 
   criarComentario(data: Comentario): Observable<Respostas<Comentario>> {
     const ulr = `${this.apiUlr}/${data.id}/comentario`
-    return this.htpp.post<Respostas<Comentario>>(this.apiUlr, data);
+    return this.htpp.post<Respostas<Comentario>>(this.url, data);
   }
 }

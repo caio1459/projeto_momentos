@@ -26,7 +26,7 @@ export class DetalhesComponent implements OnInit {
     private messageService: MensagensService,
     private router: Router,
     private comentarioService: ComentarioService
-  ) {}
+  ) { }
   ulr: string = this.momentoService.getApiUlr();
   momento?: Momento;
   editarIcon = faEdit;
